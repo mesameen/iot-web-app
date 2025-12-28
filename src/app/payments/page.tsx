@@ -1,11 +1,13 @@
 import { DataTable } from "@/components/data-table";
 import { columns, Payment } from "@/components/payments/columns";
+import { PostsList } from "@/components/posts/posts-list";
 
 
 export default async function Payments() {
     const data = await getData();
     return (
         <div className="container mx-auto py-10">
+            <PostsList></PostsList>
             <DataTable columns={columns} data={data}></DataTable>
         </div>
     )
