@@ -1,5 +1,5 @@
 "use client"
-import { Post, useGetPostsQuery } from "@/store/api/apiSlice"
+import { Post, useGetPostsQuery } from "@/store/api/posts.api";
 import { IconLoader } from "@tabler/icons-react";
 import Link from "next/link";
 import { ReactNode } from "react";
@@ -15,7 +15,7 @@ function PostExcerpt({post}: PostExcerptProps) {
                 <Link href={`/posts/${post.id}`}>{post.title}</Link>
             </h3>
             <div>
-                <p>{post.content.substring(0, 100)}</p>
+                <p>{post.content?.substring(0, 100)}</p>
             </div>
         </article>
     )
@@ -33,7 +33,7 @@ export const PostsList = () => {
     if (isLoading) {
         content = <IconLoader></IconLoader>
     } else if (isSuccess) {
-        content = posts.map(post => <PostExcerpt post={post}></PostExcerpt>)
+        content = posts.map(post => <PostExcerpt post={post} key={post.id}></PostExcerpt>)
     } else if (isError) {
         content = <div>{"Error: "+ error.toString()}</div>
     }

@@ -39,13 +39,13 @@ const data = {
             icon: IconChartBar
         },
         {
-            title: "Projects",
-            url: "#",
+            title: "Posts",
+            url: "/posts",
             icon: IconFolder
         },
         {
-            title: "Team",
-            url: "#",
+            title: "Telematics",
+            url: "/telematics",
             icon: IconUsers
         }
     ],
