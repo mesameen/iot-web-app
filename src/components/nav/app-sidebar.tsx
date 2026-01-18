@@ -29,25 +29,30 @@ const data = {
             icon: IconDashboard,
         },
         {
-            title: "Telemetry",
-            url: "/telemetry",
-            icon: IconListDetails,
-        },
-        {
-            title: "Payments",
-            url: "/payments",
+            title: "Telematics",
+            url: "/telematics",
             icon: IconChartBar
         },
         {
-            title: "Posts",
-            url: "/posts",
+            title: "Devices",
+            url: "/devices",
+            icon: IconChartBar
+        },
+        {
+            title: "Connections",
+            url: "/connections",
             icon: IconFolder
         },
         {
-            title: "Telematics",
-            url: "/telematics",
-            icon: IconUsers
-        }
+            title: "Commands",
+            url: "/commands",
+            icon: IconFolder
+        },
+        {
+            title: "Map",
+            url: "/telemetry",
+            icon: IconListDetails,
+        },
     ],
     navSecondary: [
         {

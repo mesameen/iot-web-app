@@ -1,21 +1,21 @@
 "use client";
-import { useLazyGetTelematicsDataQuery } from "@/store/api/telematics.api"
 import { ColumnFiltersState, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, SortingState, useReactTable } from "@tanstack/react-table"
-import { telematicsColumns } from "./columns";
+import { connectionsColumns } from "./columns";
 import { AppTable } from "../app-table";
-import { TelematicsFilters } from "./filters";
+import { ConnectionFilters } from "./filters";
 import { useEffect, useMemo, useState } from "react";
-import { TelematicsDataRequest } from "@/model/telematics";
-import { AlertCircle } from "lucide-react";
+import { useLazyGetConnectionsDataQuery } from "@/store/api/connections.api";
+import { ConnectionsRequest } from "@/model/connections";
 
-export const TelematicsComponent = () => {
-    const [getTelematicsData, { data, isFetching, isError, error }] = useLazyGetTelematicsDataQuery();
+export const ConnectionsComponent = () => {
+    const [getConnectionsData, { data, isFetching, error }] = useLazyGetConnectionsDataQuery();
     const [sorting, setSorting] = useState<SortingState>([]);
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
     const safeData = useMemo(() => data ?? [], [data]);
+
     const table = useReactTable({
         data: safeData,
-        columns: telematicsColumns,
+        columns: connectionsColumns,
         state: {
             sorting,
             columnFilters
@@ -29,38 +29,32 @@ export const TelematicsComponent = () => {
     })
     // Fetch default data on mount
     useEffect(() => {
-        const defaultRequest: TelematicsDataRequest = {
+        const defaultRequest: ConnectionsRequest = {
             imei: "",
             tenantGroupId: "",
             from: 0,
             to: 0
         };
-        getTelematicsData(defaultRequest)
+        getConnectionsData(defaultRequest)
     }, []);
     if (error) {
         return (
             <div className="p-4 text-red-500">
-                Failed to load telematics data
+                Failed to load Connections info
             </div>
         )
     }
 
     return (
         <div className="flex flex-1 flex-col">
-            {error && (
-                <div className="flex items-center gap-2 p-4 mb-2 bg-red-100 text-red-800 rounded-md">
-                    <AlertCircle className="h-5 w-5" />
-                    <span className="font-medium">Failed to load telematics data. Showing table anyway.</span>
-                </div>
-            )}
             <div className="@container/main flex flex-1 flex-col gap-2">
                 <div className="flex flex-col gap-4 p-4 md:gap-6 md:py-6">
-                    <TelematicsFilters
+                    <ConnectionFilters
                         loading={isFetching}
-                        onSubmit={getTelematicsData}
-                    ></TelematicsFilters>
+                        onSubmit={getConnectionsData}
+                    ></ConnectionFilters>
                     <AppTable
-                        columns={telematicsColumns}
+                        columns={connectionsColumns}
                         data={data}
                         table={table}
                     ></AppTable>

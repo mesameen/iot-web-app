@@ -1,7 +1,7 @@
 import { GpsData, NetworkData, TelematicsData } from "@/model/telematics";
 import { ColumnDef } from "@tanstack/react-table";
 import { Checkbox } from "../ui/checkbox";
-import { ArrowUpDown, BatteryFull, BatteryLow, BatteryMedium, CircleGauge, Clock3, MapPin, Power, SignalHigh, SignalLow, SignalMedium, SignalZero, Zap } from "lucide-react";
+import { ArrowUpDown, BatteryFull, BatteryLow, BatteryMedium, CircleGauge, Clock3, Fuel, MapPin, Power, SignalHigh, SignalLow, SignalMedium, SignalZero, Zap } from "lucide-react";
 import { IconBatteryVertical, IconBatteryVertical2, IconBatteryVertical3, IconBatteryVertical4 } from "@tabler/icons-react";
 import { ElementType } from "react";
 import { Button } from "../ui/button";
@@ -140,7 +140,7 @@ export const telematicsColumns: ColumnDef<TelematicsData>[] = [
                 color = "text-red-500"
             }
             return (
-                <div className="flex items-center justify-center gap-1">
+                <div className="flex items-center justify-start gap-1">
                     <Icon className={`h-4 w-4 ${color}`}></Icon>
                     <span className="text-sm font-mono">{network?.signal_per}%</span>
                 </div>
@@ -169,7 +169,7 @@ export const telematicsColumns: ColumnDef<TelematicsData>[] = [
                 color = "text-orange-500"
             }
             return (
-                <div className="flex items-center justify-center gap-1">
+                <div className="flex items-center justify-start gap-1">
                     <Icon className={`h-4 w-4 ${color}`}></Icon>
                     <span className="text-sm font-mono">{battery}%</span>
                 </div>
@@ -188,7 +188,7 @@ export const telematicsColumns: ColumnDef<TelematicsData>[] = [
             const color = ign ? "text-green-500" : "text-muted-foreground";
             const label = ign ? "ON" : "OFF";
             return (
-                <div className="flex items-center justify-center gap-1">
+                <div className="flex items-center justify-start gap-1">
                     <Power className={`w-4 h-4 ${color}`}></Power>
                     <span className="text-sm font-medium">{label}</span>
                 </div>
@@ -206,22 +206,19 @@ export const telematicsColumns: ColumnDef<TelematicsData>[] = [
                 return <span className="text-muted-foreground text-sm">-</span>;
             }
 
-            let Icon = IconBatteryVertical;
+            let Icon = Fuel;
             let color = "text-red-500";
 
-            if (fuel >= 75) {
-                Icon = IconBatteryVertical4;
+            if (fuel >= 40) {
                 color = "text-green-500";
-            } else if (fuel >= 50) {
-                Icon = IconBatteryVertical3;
-                color = "text-yellow-500";
             } else if (fuel >= 25) {
-                Icon = IconBatteryVertical2;
+                color = "text-yellow-500";
+            } else if (fuel >= 15) {
                 color = "text-orange-500";
             }
 
             return (
-                <div className="flex items-center justify-center gap-2 min-w-18">
+                <div className="flex items-center justify-start gap-2 min-w-18">
                     <Icon className={`h-4 w-4 ${color}`} />
                     <span className="text-sm font-mono tabular-nums">
                         {fuel.toString().padStart(3, " ")}%

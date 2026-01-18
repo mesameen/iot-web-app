@@ -1,21 +1,20 @@
 "use client";
-import { useLazyGetTelematicsDataQuery } from "@/store/api/telematics.api"
 import { ColumnFiltersState, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, SortingState, useReactTable } from "@tanstack/react-table"
-import { telematicsColumns } from "./columns";
+import { registeredDevicesColumns } from "./columns";
 import { AppTable } from "../app-table";
-import { TelematicsFilters } from "./filters";
 import { useEffect, useMemo, useState } from "react";
-import { TelematicsDataRequest } from "@/model/telematics";
-import { AlertCircle } from "lucide-react";
+import { useLazyGetRegisteredDevicesQuery } from "@/store/api/devices.api";
+import { RegisteredDevicesRequest } from "@/model/registered_devices";
+import { RegisteredDevicesFilters } from "./filters";
 
-export const TelematicsComponent = () => {
-    const [getTelematicsData, { data, isFetching, isError, error }] = useLazyGetTelematicsDataQuery();
+export const RegisteredDevicesComponent = () => {
+    const [getRegisteredDevices, { data, isFetching, error }] = useLazyGetRegisteredDevicesQuery();
     const [sorting, setSorting] = useState<SortingState>([]);
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
-    const safeData = useMemo(() => data ?? [], [data]);
+    const safeData = useMemo(()=>data ?? [], [data]);
     const table = useReactTable({
         data: safeData,
-        columns: telematicsColumns,
+        columns: registeredDevicesColumns,
         state: {
             sorting,
             columnFilters
@@ -29,38 +28,31 @@ export const TelematicsComponent = () => {
     })
     // Fetch default data on mount
     useEffect(() => {
-        const defaultRequest: TelematicsDataRequest = {
+        const defaultRequest: RegisteredDevicesRequest = {
             imei: "",
-            tenantGroupId: "",
+            tenant_group_id: "",
             from: 0,
             to: 0
         };
-        getTelematicsData(defaultRequest)
+        getRegisteredDevices(defaultRequest)
     }, []);
     if (error) {
         return (
             <div className="p-4 text-red-500">
-                Failed to load telematics data
+                Failed to load registered devices
             </div>
         )
     }
-
     return (
         <div className="flex flex-1 flex-col">
-            {error && (
-                <div className="flex items-center gap-2 p-4 mb-2 bg-red-100 text-red-800 rounded-md">
-                    <AlertCircle className="h-5 w-5" />
-                    <span className="font-medium">Failed to load telematics data. Showing table anyway.</span>
-                </div>
-            )}
             <div className="@container/main flex flex-1 flex-col gap-2">
                 <div className="flex flex-col gap-4 p-4 md:gap-6 md:py-6">
-                    <TelematicsFilters
+                    <RegisteredDevicesFilters
                         loading={isFetching}
-                        onSubmit={getTelematicsData}
-                    ></TelematicsFilters>
+                        onSubmit={getRegisteredDevices}
+                    ></RegisteredDevicesFilters>
                     <AppTable
-                        columns={telematicsColumns}
+                        columns={registeredDevicesColumns}
                         data={data}
                         table={table}
                     ></AppTable>

@@ -4,16 +4,16 @@ import { useState } from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
-import { TelematicsDataRequest } from "@/model/telematics";
 import { DateTimePicker } from "./datetime-picker";
+import { ConnectionsRequest } from "@/model/connections";
 
 interface Props {
-    defaultValues?: TelematicsDataRequest;
-    onSubmit: (req: TelematicsDataRequest) => void;
+    defaultValues?: ConnectionsRequest;
+    onSubmit: (req: ConnectionsRequest) => void;
     loading?: boolean;
 }
 
-export function TelematicsFilters({ defaultValues, onSubmit, loading }: Props) {
+export function ConnectionFilters({ defaultValues, onSubmit, loading }: Props) {
     const [imei, setImei] = useState(defaultValues?.imei ?? "");
     const [tenantGroupId, setTenantGroupId] = useState(defaultValues?.tenantGroupId ?? "");
     const [from, setFrom] = useState<Date | undefined>(

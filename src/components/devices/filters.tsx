@@ -4,18 +4,18 @@ import { useState } from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
-import { TelematicsDataRequest } from "@/model/telematics";
 import { DateTimePicker } from "./datetime-picker";
+import { RegisteredDevicesRequest } from "@/model/registered_devices";
 
 interface Props {
-    defaultValues?: TelematicsDataRequest;
-    onSubmit: (req: TelematicsDataRequest) => void;
+    defaultValues?: RegisteredDevicesRequest;
+    onSubmit: (req: RegisteredDevicesRequest) => void;
     loading?: boolean;
 }
 
-export function TelematicsFilters({ defaultValues, onSubmit, loading }: Props) {
+export function RegisteredDevicesFilters({ defaultValues, onSubmit, loading }: Props) {
     const [imei, setImei] = useState(defaultValues?.imei ?? "");
-    const [tenantGroupId, setTenantGroupId] = useState(defaultValues?.tenantGroupId ?? "");
+    const [tenantGroupId, setTenantGroupId] = useState(defaultValues?.tenant_group_id ?? "");
     const [from, setFrom] = useState<Date | undefined>(
         defaultValues?.from ? new Date(defaultValues.from) : new Date()
     );
@@ -26,7 +26,7 @@ export function TelematicsFilters({ defaultValues, onSubmit, loading }: Props) {
     const handleSubmit = () => {
         onSubmit({
             imei: imei || undefined,
-            tenantGroupId: tenantGroupId || undefined,
+            tenant_group_id: tenantGroupId || undefined,
             from: from?.getTime(),
             to: to?.getTime(),
         });
