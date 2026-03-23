@@ -148,9 +148,9 @@ export const telematicsColumns: ColumnDef<TelematicsData>[] = [
         }
     },
     {
-        id: "battery",
+        id: "btry",
         header: "Battery",
-        accessorFn: (row) => row.sensor_data?.battery_per,
+        accessorFn: (row) => row.sensor_data?.btry,
         cell: ({ getValue }) => {
             const battery = getValue() as number | undefined;
             if (battery == null) {
@@ -177,9 +177,9 @@ export const telematicsColumns: ColumnDef<TelematicsData>[] = [
         }
     },
     {
-        id: "ignition",
+        id: "ign",
         header: "Ignition",
-        accessorFn: (row) => row.sensor_data?.ignition,
+        accessorFn: (row) => row.sensor_data?.ign,
         cell: ({ getValue }) => {
             let ign = getValue() as boolean | undefined;
             if (ign == null) {
@@ -196,9 +196,9 @@ export const telematicsColumns: ColumnDef<TelematicsData>[] = [
         }
     },
     {
-        id: "fuel",
+        id: "fuelPercent",
         header: "Fuel",
-        accessorFn: (row) => row.sensor_data?.fuel_level_per,
+        accessorFn: (row) => row.sensor_data?.fuelPercent,
         cell: ({ getValue }) => {
             const fuel = getValue() as number | undefined;
 

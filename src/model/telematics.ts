@@ -36,13 +36,13 @@ export interface SensorData {
     rpm: number,
     speed: number,
     idling: number,
-    ibutton: string,
-    distance: number,
+    Itag: string,
+    dist: number,
     eng_temp: number,
-    ignition: boolean,
-    battery_per: number,
+    ign: boolean,
+    btry: number,
     acc_pedal_per: number,
-    fuel_level_per: number
+    fuelPercent: number
 }
 
 export interface NetworkData {
