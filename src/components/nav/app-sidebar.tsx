@@ -5,7 +5,7 @@ import { TeamSwitcher } from "./team-switcher"
 import { Command, GalleryVerticalEnd, Sun } from "lucide-react"
 import { ToggleAppTheme } from "./toggle-theme"
 import { NavMain } from "./nav-main"
-import { IconChartBar, IconDashboard, IconFolder, IconHelp, IconListDetails, IconSearch, IconSettings, IconUsers } from "@tabler/icons-react";
+import { IconChartBar, IconDashboard, IconFolder, IconHelp, IconListDetails, IconMap, IconSearch, IconSettings, IconUsers } from "@tabler/icons-react";
 import { NavSecondary } from "./nav-secondary"
 import { NavUser } from "./nav-user"
 
@@ -50,8 +50,8 @@ const data = {
         },
         {
             title: "Map",
-            url: "/telemetry",
-            icon: IconListDetails,
+            url: "/livemap",
+            icon: IconMap,
         },
     ],
     navSecondary: [

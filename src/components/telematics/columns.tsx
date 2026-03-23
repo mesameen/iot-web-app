@@ -108,14 +108,14 @@ export const telematicsColumns: ColumnDef<TelematicsData>[] = [
         },
         cell: ({ getValue }) => {
             const gps = getValue() as GpsData;
-            if (gps?.latitude == null || gps?.latitude == null) {
+            if (gps?.lat == null || gps?.lon == null) {
                 return <span className="text-muted-foreground text-sm">-</span>
             }
             return (
                 <div className="flex items-center gap-2 text-sm justify-start">
                     <MapPin className="h-4 w-4 text-muted-foreground"></MapPin>
                     <span className="font-mono text-foreground">
-                        {gps.latitude.toFixed(5)}, {gps.longitude.toFixed(5)}
+                        {gps.lat.toFixed(5)}, {gps.lon.toFixed(5)}
                     </span>
                 </div>
             )

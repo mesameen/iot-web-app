@@ -1,13 +1,12 @@
-import { Map, MapMarker, MapPopup, MapTileLayer, MapZoomControl } from "../ui/map"
+import { LatLngExpression } from "leaflet";
+import { Map, MapTileLayer } from "../ui/map";
 
 export const CustomMap = () => {
+    const TORONTO_COORDINATES = [43.6532, -79.3832] satisfies LatLngExpression;
     return (
-        <Map center={[43.6532, -79.3832]}>
+        <Map center={TORONTO_COORDINATES} zoom={12}>
             <MapTileLayer></MapTileLayer>
-            <MapZoomControl></MapZoomControl>
-            <MapMarker position={[43.6532, -79.3832]}>
-                <MapPopup>A map center for shadcn/ui</MapPopup>
-            </MapMarker>
         </Map>
     )
 }
+

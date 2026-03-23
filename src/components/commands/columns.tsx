@@ -1,9 +1,7 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { Checkbox } from "../ui/checkbox";
 import { ArrowUpDown, Clock3, Power, Zap } from "lucide-react";
-import { ElementType } from "react";
 import { Button } from "../ui/button";
-import { ConnectionsData } from "@/model/connections";
 import { Badge } from "../ui/badge";
 import { Command } from "@/model/commands";
 
@@ -54,193 +52,23 @@ export const commandsColumns: ColumnDef<Command>[] = [
         }
     },
     {
-        accessorKey: "action",
-        header: "Status",
-        cell: ({ cell }) => {
-            const val = cell.getValue() as string | undefined;
-            if (!val) return <span className="text-muted-foreground text-sm">-</span>;
-
-            const isConnected = val.toLowerCase() === "connected";
-            const Icon = isConnected ? Zap : Power;
-            const label = isConnected ? "Online" : "Offline";
-            const bgColor = isConnected ? "bg-green-100" : "bg-red-100";
-            const textColor = isConnected ? "text-green-800" : "text-red-800";
-
-            return (
-                <Badge className={`inline-flex items-center gap-1 px-3 py-1 ${bgColor} ${textColor}`}>
-                    <Icon className="h-4 w-4" />
-                    {label}
-                </Badge>
-            );
-        },
+        accessorKey: "data",
+        header: "Command"
     },
     {
-        accessorKey: "connected_at_ms",
-        enableSorting: true,
-        header: ({ column }) => {
-            return (
-                <Button
-                    variant={"ghost"}
-                    onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-                >
-                    Connected At
-                    <ArrowUpDown></ArrowUpDown>
-                </Button>
-            )
-        },
-        cell: ({ cell }) => {
-            const val = cell.getValue() as number;
-            if (!val) return <span className="text-muted-foreground">-</span>;
-
-            const date = new Date(val);
-            const formattedDate = date.toLocaleDateString(undefined, { month: "short", day: "numeric" });
-            const formattedTime = date.toLocaleTimeString(undefined, { hour12: false });
-
-            const isConnected = cell.column.id === "connected_at_ms";
-            const iconColor = isConnected ? "text-green-500" : "text-red-500";
-
-            return (
-                <div className="flex items-center gap-2 px-2 py-1 rounded hover:bg-gray-50 transition">
-                    <Clock3 className={`h-4 w-4 ${iconColor}`} />
-                    <span className="font-medium text-sm">{formattedDate} · {formattedTime}</span>
-                </div>
-            );
-        },
+        accessorKey: "is_response_required",
+        header: "Reponse Required"
     },
     {
-        accessorKey: "disconnected_at_ms",
-        enableSorting: true,
-        header: ({ column }) => {
-            return (
-                <Button
-                    variant={"ghost"}
-                    onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-                >
-                    Disconnected At
-                    <ArrowUpDown></ArrowUpDown>
-                </Button>
-            )
-        },
-        cell: ({ cell }) => {
-            const val = cell.getValue() as number;
-            if (!val) return (
-                <div className="flex items-center justify-center gap-2">
-                    <span className="text-muted-foreground justify-center text-sm">-</span>
-                </div>
-            )
-
-            const date = new Date(val);
-            const formattedDate = date.toLocaleDateString(undefined, { month: "short", day: "numeric" });
-            const formattedTime = date.toLocaleTimeString(undefined, { hour12: false });
-
-            const isConnected = cell.column.id === "connected_at_ms";
-            const iconColor = isConnected ? "text-green-500" : "text-red-500";
-
-            return (
-                <div className="flex items-center justify-center gap-2 px-2 py-1 rounded hover:bg-gray-50 transition">
-                    <Clock3 className={`h-4 w-4 ${iconColor}`} />
-                    <span className="font-medium text-sm">{formattedDate} · {formattedTime}</span>
-                </div>
-            );
-        },
+        accessorKey: "response",
+        header: "Reponse"
     },
     {
-        accessorKey: "duration",
-        header: "Duration",
-        cell: ({ cell }) => {
-            const val = cell.getValue() as number; // milliseconds
-            if (!val) return (
-                <div className="flex items-center justify-center gap-2">
-                    <span className="text-muted-foreground justify-center text-sm">-</span>
-                </div>
-            )
-
-            let displayValue: string;
-            if (val >= 60000) {
-                // Show in minutes
-                displayValue = `${(val / 60000).toFixed(1)} m`;
-            } else {
-                // Show in seconds
-                displayValue = `${(val / 1000).toFixed(1)} s`;
-            }
-
-            return (
-                <div className="flex items-center justify-center gap-2">
-                    <Badge className="inline-flex items-center gap-1 px-2 py-1 bg-blue-100 text-blue-800">
-                        <Clock3 className="h-4 w-4" />
-                        {displayValue}
-                    </Badge>
-                </div>
-            );
-        },
+        accessorKey: "max_retries",
+        header: "Retries",
     },
     {
-        accessorKey: "reason",
-        header: "Disconnect Reason",
-        cell: ({ cell }) => {
-            let val = cell.getValue() as string;
-            if (!val) {
-                return (
-                    <div className="flex items-center justify-center">
-                        <span className="text-muted-foreground font-medium">-</span>
-                    </div>
-                )
-            }
-            return (
-                <div className="flex items-center justify-center">
-                    <Badge className={`inline-flex items-center gap-1 px-2 py-1 bg-yellow-100 text-yellow-800`}>
-                        {val.replace(/_/g, " ")}
-                    </Badge>
-                </div>
-            )
-        }
+        accessorKey: "expires_at_ms",
+        header: "Expires At",
     },
-    {
-        accessorKey: "sent",
-        header: "Sent Data",
-        cell: ({ cell }) => {
-            let val = cell.getValue() as number;
-            if (val === 0) {
-                return (
-                    <div className="flex items-center justify-center gap-2">
-                        <span className="font-medium"> - </span>
-                    </div>
-                )
-            }
-            return (
-                <div className="flex items-center justify-center gap-2">
-                    <span className="font-medium"> {val} </span>
-                </div>
-            )
-        }
-    },
-    {
-        accessorKey: "recv",
-        header: "Received Data",
-        cell: ({ cell }) => {
-            const val = cell.getValue() as number;
-            if (!val) return (
-                <div className="flex items-center justify-center gap-2">
-                    <span className="text-muted-foreground justify-center text-sm">-</span>
-                </div>
-            )
-            let displayValue: string;
-            if (val >= 1024 * 1024) {
-                // Show in MB
-                displayValue = `${(val / (1024 * 1024)).toFixed(2)} MB`;
-            } else {
-                // Show in KB
-                displayValue = `${(val / 1024).toFixed(1)} KB`;
-            }
-
-            return (
-                <div className="flex items-center justify-center gap-2">
-                    <Badge className="inline-flex items-center gap-1 px-2 py-1 bg-blue-100 text-blue-800">
-                        {displayValue}
-                    </Badge>
-                </div>
-            );
-        },
-    }
-
 ];

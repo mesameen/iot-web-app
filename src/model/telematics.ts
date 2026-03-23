@@ -27,9 +27,9 @@ export interface TelematicsData {
 export interface GpsData {
     speed: number,
     heading: number,
-    altitude: number,
-    latitude: number,
-    longitude: number
+    alt: number,
+    lat: number,
+    lon: number
 }
 
 export interface SensorData {

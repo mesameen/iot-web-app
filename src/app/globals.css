@@ -167,4 +167,7 @@
   .leaflet-edit-marker-selected {
     @apply !border-transparent !bg-transparent;
   }
+  .marker-cluster div {
+    @apply font-[inherit];
+  }
 }
