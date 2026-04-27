@@ -11,8 +11,7 @@ export type Command = {
 
     expires_at_ms: number;       // epoch millis
 
-    tenant_group_id: string;
-    tenant_id: string;
+    tenant_id: number;
 
     sent_to_device: boolean;
     sent_at_ms: number;          // 0 if not sent
@@ -21,8 +20,7 @@ export type Command = {
 
 export interface GetCommandsRequest {
     imei?: string,
-    tenant_group_id?: string,
-    tenant_id?: string,
+    tenant_id?: number,
     from?: number,
     to?: number,
     page?: number,

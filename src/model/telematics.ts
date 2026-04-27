@@ -13,7 +13,6 @@ export interface TelematicsData {
     imei: string,
     device_datatime: number,
     insert_datetime: number,
-    tenant_group_id: string,
     listener_datetime: number,
     latitude: number,
     longitude: number,

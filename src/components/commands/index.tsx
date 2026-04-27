@@ -31,7 +31,6 @@ export const CommandsComponent = () => {
     useEffect(() => {
         const defaultRequest: GetCommandsRequest = {
             imei: "",
-            tenant_group_id: "",
             from: 0,
             to: 0
         };

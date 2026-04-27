@@ -5,8 +5,7 @@ import { CustomMap } from "@/components/maps/custom-map";
 export default function Telemetry() {
     return (
         <div>
-            <h1>TelemetryData</h1>
-            <Counter></Counter>
+            {/* <Counter></Counter> */}
             <CustomMap></CustomMap>
         </div>
     )

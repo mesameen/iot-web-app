@@ -71,11 +71,11 @@ export const connectionsColumns: ColumnDef<ConnectionsData>[] = [
     {
         accessorKey: "action",
         header: "Status",
-        cell: ({ cell }) => {
+        cell: ({ row, cell }) => {
             const val = cell.getValue() as string | undefined;
             if (!val) return <span className="text-muted-foreground text-sm">-</span>;
 
-            const isConnected = val.toLowerCase() === "connected";
+            const isConnected = val.toLowerCase() === "connected" || !row.original.disconnected_at_ms;
             const Icon = isConnected ? Zap : Power;
             const label = isConnected ? "Online" : "Offline";
             const bgColor = isConnected ? "bg-green-100" : "bg-red-100";

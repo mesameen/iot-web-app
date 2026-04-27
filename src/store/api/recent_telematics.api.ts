@@ -1,13 +1,13 @@
 import { TelematicsData, TelematicsDataRequest } from "@/model/telematics";
 import { apiSlice } from "./apiSlice";
 
-export const telematicsApi = apiSlice.injectEndpoints({
+export const recentTelematicsApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
-        getTelematicsData: builder.query<
+        getRecentTelematicsData: builder.query<
             TelematicsData[], TelematicsDataRequest
         >({
             query: (body) => ({
-                url: "/telematics/data",
+                url: "/telematics/recent",
                 method: "POST",
                 body
             })
@@ -16,6 +16,6 @@ export const telematicsApi = apiSlice.injectEndpoints({
 })
 
 export const {
-    useGetTelematicsDataQuery,
-    useLazyGetTelematicsDataQuery,
-} = telematicsApi;
+    useGetRecentTelematicsDataQuery,
+    useLazyGetRecentTelematicsDataQuery,
+} = recentTelematicsApi;

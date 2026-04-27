@@ -58,6 +58,10 @@ export const registeredDevicesColumns: ColumnDef<RegisteredDevice>[] = [
     },
     {
         accessorKey: "tenant_id",
-        header: "Teannt ID"
+        header: "Tenant"
+    },
+    {
+        accessorKey: "parser_id",
+        header: "Parser"
     }
 ];

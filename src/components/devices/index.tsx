@@ -30,7 +30,6 @@ export const RegisteredDevicesComponent = () => {
     useEffect(() => {
         const defaultRequest: RegisteredDevicesRequest = {
             imei: "",
-            tenant_group_id: "",
             from: 0,
             to: 0
         };

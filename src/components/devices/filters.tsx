@@ -15,7 +15,6 @@ interface Props {
 
 export function RegisteredDevicesFilters({ defaultValues, onSubmit, loading }: Props) {
     const [imei, setImei] = useState(defaultValues?.imei ?? "");
-    const [tenantGroupId, setTenantGroupId] = useState(defaultValues?.tenant_group_id ?? "");
     const [from, setFrom] = useState<Date | undefined>(
         defaultValues?.from ? new Date(defaultValues.from) : new Date()
     );
@@ -26,7 +25,6 @@ export function RegisteredDevicesFilters({ defaultValues, onSubmit, loading }: P
     const handleSubmit = () => {
         onSubmit({
             imei: imei || undefined,
-            tenant_group_id: tenantGroupId || undefined,
             from: from?.getTime(),
             to: to?.getTime(),
         });
@@ -41,10 +39,10 @@ export function RegisteredDevicesFilters({ defaultValues, onSubmit, loading }: P
             </div>
 
             {/* Tenant Group */}
-            <div className="flex flex-col gap-1">
+            {/* <div className="flex flex-col gap-1">
                 <Label>Tenant Group</Label>
                 <Input value={tenantGroupId} onChange={(e) => setTenantGroupId(e.target.value)} />
-            </div>
+            </div> */}
 
             {/* From DateTime */}
             <DateTimePicker label="From" defaultValue={from} onChange={setFrom} />

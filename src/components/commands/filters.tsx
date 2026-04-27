@@ -27,7 +27,6 @@ export function CommandFilters({ defaultValues, onSubmit, loading }: Props) {
     const handleSubmit = () => {
         onSubmit({
             imei: imei || undefined,
-            tenant_group_id: tenantGroupId || undefined,
             from: from?.getTime(),
             to: to?.getTime(),
         });

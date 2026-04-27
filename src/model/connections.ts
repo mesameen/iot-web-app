@@ -11,8 +11,7 @@ export interface ConnectionsRequest {
 
 export interface ConnectionsData {
     imei: string,
-    tenant_group_id: string,
-    tenant_id: string,
+    tenant_id: number,
     connected_at_ms: number,
     disconnected_at_ms: number,
     duration: number,

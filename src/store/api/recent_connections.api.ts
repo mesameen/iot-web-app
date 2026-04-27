@@ -1,13 +1,13 @@
 import { apiSlice } from "./apiSlice";
 import { ConnectionsData, ConnectionsRequest } from "@/model/connections";
 
-export const connectionsApi = apiSlice.injectEndpoints({
+export const recentConnectionsApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
-        getConnectionsData: builder.query<
+        getRecentConnectionsData: builder.query<
             ConnectionsData[], ConnectionsRequest
         >({
             query: (body) => ({
-                url: "/connections/data",
+                url: "/connections/recent",
                 method: "POST",
                 body
             })
@@ -16,6 +16,6 @@ export const connectionsApi = apiSlice.injectEndpoints({
 })
 
 export const {
-    useGetConnectionsDataQuery,
-    useLazyGetConnectionsDataQuery,
-} = connectionsApi;
+    useGetRecentConnectionsDataQuery,
+    useLazyGetRecentConnectionsDataQuery,
+} = recentConnectionsApi;

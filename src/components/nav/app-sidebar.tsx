@@ -27,31 +27,75 @@ const data = {
             title: "Dashboard",
             url: "/",
             icon: IconDashboard,
+           items: [
+                {
+                    title: "Dashboard",
+                    url: "/"
+                }
+            ]
         },
         {
             title: "Telematics",
             url: "/telematics",
-            icon: IconChartBar
+            icon: IconChartBar,
+            items: [
+                {
+                    title: "Recent Telematics",
+                    url: "/telematics/recent"
+                },
+                {
+                    title: "Telematics",
+                    url: "/telematics/data"
+                }
+            ]
         },
         {
             title: "Devices",
             url: "/devices",
-            icon: IconChartBar
+            icon: IconChartBar,
+            items: [
+                {
+                    title: "Registered Devices",
+                    url: "/devices"
+                }
+            ]
         },
         {
             title: "Connections",
             url: "/connections",
-            icon: IconFolder
+            icon: IconFolder,
+            items: [
+                {
+                    title: "Recent Connections",
+                    url: "/connections/recent"
+                },
+                {
+                    title: "Connections",
+                    url: "/connections/data"
+                }
+            ]
         },
         {
             title: "Commands",
             url: "/commands",
-            icon: IconFolder
+            icon: IconFolder,
+            items: [
+                {
+                    title: "Commands",
+                    url: "/commands"
+                }
+            ]
         },
         {
             title: "Map",
             url: "/livemap",
             icon: IconMap,
+            items: [
+                {
+                    title: "Live Map",
+                    url: "/livemap"
+                }
+            ]
         },
     ],
     navSecondary: [
