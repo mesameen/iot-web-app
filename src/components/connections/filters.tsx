@@ -17,10 +17,10 @@ export function ConnectionFilters({ defaultValues, onSubmit, loading }: Props) {
     const [imei, setImei] = useState(defaultValues?.imei ?? "");
     const [tenantGroupId, setTenantGroupId] = useState(defaultValues?.tenantGroupId ?? "");
     const [from, setFrom] = useState<Date | undefined>(
-        defaultValues?.from ? new Date(defaultValues.from) : new Date()
+        defaultValues?.from ? new Date(defaultValues.from) : new Date(new Date().getTime() - 10 * 60 * 1000)
     );
     const [to, setTo] = useState<Date | undefined>(
-        defaultValues?.to ? new Date(defaultValues.to) : new Date(new Date().getTime() - 10 * 60 * 1000)
+        defaultValues?.to ? new Date(defaultValues.to) : new Date()
     );
 
     const handleSubmit = () => {

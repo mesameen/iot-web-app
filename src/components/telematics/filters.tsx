@@ -17,10 +17,10 @@ export function TelematicsFilters({ defaultValues, onSubmit, loading }: Props) {
     const [imei, setImei] = useState(defaultValues?.imei ?? "");
     const [tenantGroupId, setTenantGroupId] = useState(defaultValues?.tenantGroupId ?? "");
     const [from, setFrom] = useState<Date | undefined>(
-        defaultValues?.from ? new Date(defaultValues.from) : new Date()
+        defaultValues?.from ? new Date(defaultValues.from) : new Date(new Date().getTime() - 10 * 60 * 1000)
     );
     const [to, setTo] = useState<Date | undefined>(
-        defaultValues?.to ? new Date(defaultValues.to) : new Date(new Date().getTime() - 10 * 60 * 1000)
+        defaultValues?.to ? new Date(defaultValues.to) : new Date()
     );
 
     const handleSubmit = () => {
@@ -40,9 +40,8 @@ export function TelematicsFilters({ defaultValues, onSubmit, loading }: Props) {
                 <Input value={imei} onChange={(e) => setImei(e.target.value)} />
             </div>
 
-            {/* Tenant Group */}
             <div className="flex flex-col gap-1">
-                <Label>Tenant Group</Label>
+                <Label>Tenant</Label>
                 <Input value={tenantGroupId} onChange={(e) => setTenantGroupId(e.target.value)} />
             </div>
 
