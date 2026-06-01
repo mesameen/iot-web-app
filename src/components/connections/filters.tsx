@@ -15,7 +15,6 @@ interface Props {
 
 export function ConnectionFilters({ defaultValues, onSubmit, loading }: Props) {
     const [imei, setImei] = useState(defaultValues?.imei ?? "");
-    const [tenantGroupId, setTenantGroupId] = useState(defaultValues?.tenantGroupId ?? "");
     const [from, setFrom] = useState<Date | undefined>(
         defaultValues?.from ? new Date(defaultValues.from) : new Date(new Date().getTime() - 10 * 60 * 1000)
     );
@@ -26,7 +25,6 @@ export function ConnectionFilters({ defaultValues, onSubmit, loading }: Props) {
     const handleSubmit = () => {
         onSubmit({
             imei: imei || undefined,
-            tenantGroupId: tenantGroupId || undefined,
             from: from?.getTime(),
             to: to?.getTime(),
         });
@@ -37,14 +35,9 @@ export function ConnectionFilters({ defaultValues, onSubmit, loading }: Props) {
             {/* IMEI */}
             <div className="flex flex-col gap-1">
                 <Label>IMEI</Label>
-                <Input value={imei} onChange={(e) => setImei(e.target.value)} />
+                <Input value={imei} onChange={(e) => setImei(e.target.value)} placeholder="866344059070362"/>
             </div>
 
-            {/* Tenant Group */}
-            <div className="flex flex-col gap-1">
-                <Label>Tenant Group</Label>
-                <Input value={tenantGroupId} onChange={(e) => setTenantGroupId(e.target.value)} />
-            </div>
 
             {/* From DateTime */}
             <DateTimePicker label="From" defaultValue={from} onChange={setFrom} />

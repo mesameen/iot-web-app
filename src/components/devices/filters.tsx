@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
-import { DateTimePicker } from "./datetime-picker";
 import { RegisteredDevicesRequest } from "@/model/registered_devices";
 
 interface Props {
@@ -35,21 +34,8 @@ export function RegisteredDevicesFilters({ defaultValues, onSubmit, loading }: P
             {/* IMEI */}
             <div className="flex flex-col gap-1">
                 <Label>IMEI</Label>
-                <Input value={imei} onChange={(e) => setImei(e.target.value)} />
+                <Input value={imei} onChange={(e) => setImei(e.target.value)} placeholder="866344059070362"/>
             </div>
-
-            {/* Tenant Group */}
-            {/* <div className="flex flex-col gap-1">
-                <Label>Tenant Group</Label>
-                <Input value={tenantGroupId} onChange={(e) => setTenantGroupId(e.target.value)} />
-            </div> */}
-
-            {/* From DateTime */}
-            <DateTimePicker label="From" defaultValue={from} onChange={setFrom} />
-
-            {/* To DateTime */}
-            <DateTimePicker label="To" defaultValue={to} onChange={setTo} />
-
             {/* Submit Button */}
             <div className="flex items-end">
                 <Button onClick={handleSubmit} disabled={loading}>

@@ -61,6 +61,7 @@ export function DateTimePicker({ label, defaultValue, onChange }: SimpleDateTime
       <Popover>
         <PopoverTrigger asChild>
           <Input
+            className="text-left"
             value={inputValue}
             onChange={(e) => handleInputChange(e.target.value)}
             placeholder="yyyy-MM-dd HH:mm"

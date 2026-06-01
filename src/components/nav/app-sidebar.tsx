@@ -97,6 +97,17 @@ const data = {
                 }
             ]
         },
+        {
+            title: "Components",
+            url: "/components",
+            icon: IconMap,
+            items: [
+                {
+                    title: "Components",
+                    url: "/components"
+                }
+            ]
+        },
     ],
     navSecondary: [
         {

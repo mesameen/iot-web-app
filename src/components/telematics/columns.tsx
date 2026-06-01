@@ -236,7 +236,7 @@ export const telematicsColumns: ColumnDef<TelematicsData>[] = [
             if (speed == null) {
                 return <span className="text-muted-foreground text-sm">-</span>
             }
-            let speedInKm = speed / 1000;
+            let speedInKm = speed;
             return (
                 <div className="flex items-center gap-1">
                     <CircleGauge className="w-4 h-4 text-foreground/70"></CircleGauge>

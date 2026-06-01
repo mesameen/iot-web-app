@@ -16,7 +16,6 @@ interface Props {
 
 export function CommandFilters({ defaultValues, onSubmit, loading }: Props) {
     const [imei, setImei] = useState(defaultValues?.imei ?? "");
-    const [tenantGroupId, setTenantGroupId] = useState(defaultValues?.tenant_id ?? "");
     const [from, setFrom] = useState<Date | undefined>(
         defaultValues?.from ? new Date(defaultValues.from) : new Date()
     );
@@ -37,13 +36,7 @@ export function CommandFilters({ defaultValues, onSubmit, loading }: Props) {
             {/* IMEI */}
             <div className="flex flex-col gap-1">
                 <Label>IMEI</Label>
-                <Input value={imei} onChange={(e) => setImei(e.target.value)} />
-            </div>
-
-            {/* Tenant Group */}
-            <div className="flex flex-col gap-1">
-                <Label>Tenant Group</Label>
-                <Input value={tenantGroupId} onChange={(e) => setTenantGroupId(e.target.value)} />
+                <Input value={imei} onChange={(e) => setImei(e.target.value)} placeholder="866344059070362"/>
             </div>
 
             {/* From DateTime */}
